@@ -10,9 +10,29 @@ public class CrispyFlour extends Material {
         this.quantity = quantity;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public double getRealMoney() {
+        LocalDate today = getManufacturingDate();
+        if (today.isAfter(getExpiryDate().minusMonths(2))) {
+            return getAmount() - (getAmount() * 0.4);
+        } else if (today.isAfter(getExpiryDate().minusMonths(4))) {
+            return getAmount() - (getAmount() * 0.2);
+        } else {
+            return getAmount() - (getAmount() * 0.05);
+        }
+    }
+
     @Override
     public double getAmount() {
-        return this.quantity*getCost();
+        return getCost() * getQuantity();
     }
 
     @Override
@@ -22,14 +42,12 @@ public class CrispyFlour extends Material {
 
     @Override
     public String toString() {
-        return "CrispyFlour{" +
-                "quantity=" + quantity +
-                "cost =" + getCost() +
-                '}';
-    }
-
-    @Override
-    public double getRealMoney() {
-        return 0;
+        return "Bột chiên : " +
+                "Số lượng :" + quantity +
+                ", id:'" + getId() + '\'' +
+                ", Tên:'" + getName() + '\'' +
+                ", Ngày mua:" + getManufacturingDate() +
+                ", Hết hạn: " + getExpiryDate() +
+                ", Giá =" + getCost();
     }
 }

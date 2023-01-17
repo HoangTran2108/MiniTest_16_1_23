@@ -2,6 +2,7 @@ package material;
 
 import java.time.LocalDate;
 
+
 public class Meat extends Material {
     private double weight;
 
@@ -10,9 +11,28 @@ public class Meat extends Material {
         this.weight = weight;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    @Override
+    public double getRealMoney() {
+        LocalDate today = getManufacturingDate();
+        if (today.isAfter(getExpiryDate().minusDays(5))){
+            return (getAmount() - (getAmount()* 0.3));
+        }
+        else {
+            return (getAmount() - (getAmount()* 0.1));
+        }
+    }
+
     @Override
     public double getAmount() {
-        return this.weight*getCost();
+        return getCost() * getWeight();
     }
 
     @Override
@@ -22,14 +42,12 @@ public class Meat extends Material {
 
     @Override
     public String toString() {
-        return "Meat{" +
-                "weight=" + weight +
-                "cost=" + getCost() +
-                '}';
-    }
-
-    @Override
-    public double getRealMoney() {
-        return 0;
+        return "Thịt: " +
+                "Cân nặng=" + weight +
+                ", id:'" + getId() + '\'' +
+                ", Tên:'" + getName() + '\'' +
+                ", Ngày mua:" + getManufacturingDate() +
+                ", Hết hạn: " + getExpiryDate() +
+                ", Giá =" + getCost();
     }
 }

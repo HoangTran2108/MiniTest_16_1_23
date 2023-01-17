@@ -23,33 +23,38 @@ public class ManagerMaterial {
         materials[9] = new Meat("m5","thịt", LocalDate.now().plusDays(1),1900,3);
 
     }
+
+    public void display() {
+        for (Material material : materials) {
+            System.out.println(material);
+            }
+    }
     public void totalPriceMeat() {
         double priceMeat = 0;
+        double totalMoneyMeatSale = 0;
         for (Material material : materials) {
             if(material instanceof Meat) {
-                if (material.getExpiryDate() .compareTo(material.getManufacturingDate())<=5) {
-                    priceMeat += material.getCost() *(100-30)/100;
-                } else{
-                    priceMeat += material.getCost() *(100-10)/100;
-                }
+                priceMeat += material.getRealMoney();
+                totalMoneyMeatSale += (material.getAmount()-material.getRealMoney());
             }
-        } System.out.println("Tổng giá thịt sau giảm: " +priceMeat);
+        }
+        System.out.println("_____________________________________");
+        System.out.println("Tổng giá thịt sau giảm: " +priceMeat);
+        System.out.println("Tổng tiền thịt được giảm : " +totalMoneyMeatSale);
     }
 
     public void totalPriceCrispyFlour() {
-        double priceCrispyFlour =0 ;
+        double priceCrispyFlour =0;
+        double totalScrispyFlourSale =0;
         for (Material material : materials) {
             if (material instanceof CrispyFlour) {
-                if ((material.getExpiryDate().compareTo(material.getManufacturingDate())<2)) {
-                    priceCrispyFlour += material.getCost()*40/100;
-                } else if (material.getExpiryDate().compareTo(material.getManufacturingDate())<4){
-                    priceCrispyFlour += material.getCost()*20/100;
-                } else {
-                    priceCrispyFlour += material.getCost()*20/100;
-                }
+                priceCrispyFlour += material.getRealMoney();
+                totalScrispyFlourSale += (material.getAmount()-material.getRealMoney());
             }
         }
-        System.out.println("Tổng giá bột sau giảm: " + priceCrispyFlour);
+        System.out.println("_____________________________________");
+        System.out.println("Tổng giá bột chiên sau giảm: " + priceCrispyFlour);
+        System.out.println("Tổng tiền bột được giảm : " + totalScrispyFlourSale);
     }
 
 }
