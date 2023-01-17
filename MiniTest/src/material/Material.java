@@ -1,10 +1,8 @@
 package material;
 
-import discount.Discount;
-
 import java.time.LocalDate;
 
-public abstract class Material {
+public abstract class Material implements Discount {
     private String id;
 
     private String name;

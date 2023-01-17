@@ -27,4 +27,9 @@ public class CrispyFlour extends Material {
                 "cost =" + getCost() +
                 '}';
     }
+
+    @Override
+    public double getRealMoney() {
+        return 0;
+    }
 }

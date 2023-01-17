@@ -27,4 +27,9 @@ public class Meat extends Material {
                 "cost=" + getCost() +
                 '}';
     }
+
+    @Override
+    public double getRealMoney() {
+        return 0;
+    }
 }

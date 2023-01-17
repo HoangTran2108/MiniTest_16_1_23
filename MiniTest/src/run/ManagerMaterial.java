@@ -3,14 +3,14 @@ package run;
 import material.CrispyFlour;
 import material.Material;
 import material.Meat;
-
+import material.Discount;
 import java.time.LocalDate;
 
 public class ManagerMaterial {
     Material[] materials;
 
-    public void display() {
-        Material[] materials = new Material[10];
+    public ManagerMaterial() {
+        materials = new Material[10];
         materials[0] = new CrispyFlour("f1","bột", LocalDate.now().plusMonths(11),500,2);
         materials[1] = new CrispyFlour("f2","bột", LocalDate.now().plusMonths(10),600,1);
         materials[2] = new CrispyFlour("f3","bột", LocalDate.now().plusMonths(9),700,2);
@@ -30,10 +30,10 @@ public class ManagerMaterial {
                 if (material.getExpiryDate() .compareTo(material.getManufacturingDate())<=5) {
                     priceMeat += material.getCost() *(100-30)/100;
                 } else{
-                    priceMeat += material.getCost() - material.getCost()*10/100;
+                    priceMeat += material.getCost() *(100-10)/100;
                 }
             }
-        } System.out.println(priceMeat);
+        } System.out.println("Tổng giá thịt sau giảm: " +priceMeat);
     }
 
     public void totalPriceCrispyFlour() {
@@ -49,7 +49,7 @@ public class ManagerMaterial {
                 }
             }
         }
-        System.out.println(priceCrispyFlour);
+        System.out.println("Tổng giá bột sau giảm: " + priceCrispyFlour);
     }
 
 }
