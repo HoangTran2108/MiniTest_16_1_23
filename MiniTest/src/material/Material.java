@@ -1,5 +1,7 @@
 package material;
 
+import discount.Discount;
+
 import java.time.LocalDate;
 
 public abstract class Material {
@@ -10,9 +12,6 @@ public abstract class Material {
     private LocalDate manufacturingDate;
 
     private int cost;
-
-    public Material() {
-    }
 
     public Material(String id, String name, LocalDate manufacturingDate, int cost) {
         this.id = id;
